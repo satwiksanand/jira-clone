@@ -1,0 +1,10 @@
+<div class="task-card">
+    <p>Current Status: <strong>{{ status }}</strong></p>
+
+    <button
+        hx-post="/update-status"
+        hx-target="#status-container"
+        hx-swap="innerHTML">
+        Move to In Progress
+    </button>
+</div>

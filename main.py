@@ -1,6 +1,8 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
+from fastapi.templating import Jinja2Templates
 
 app = FastAPI()
+templates = Jinja2Templates(directory="templates")
 
 tickets: list[dict]= [
     {
@@ -18,8 +20,8 @@ tickets: list[dict]= [
 ]
 
 @app.get("/")
-def print_hi():
-    return {"message": "Hello Satwik!"}
+def home(request: Request):
+    return templates.TemplateResponse(request=request, name="layout.html", context={"status": "Pending"})
 
 @app.get("/api/v1/tickets")
 def get_tickets():
